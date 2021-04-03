@@ -1,7 +1,6 @@
 import express from "express";
 import { ApolloServer, gql } from "apollo-server-express";
 import resolvers from "./graphql/resolvers.js";
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import cors from 'cors'
 
 const typeDefs = gql`
@@ -12,8 +11,14 @@ const typeDefs = gql`
     description: String!
   }
 
+  type Symbols {
+    name: String!
+    symbol: String!
+  }
+
   type Query {
     news(q: String): [Articles]!
+    symbols: [Symbols]!
   }
 `;
 
